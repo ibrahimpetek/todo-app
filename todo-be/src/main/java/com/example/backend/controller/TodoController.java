@@ -18,6 +18,7 @@ import com.example.backend.dto.TodoRequestDto;
 import com.example.backend.dto.TodoResponseDto;
 import com.example.backend.service.TodoService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController 
@@ -29,7 +30,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping
-    public ResponseEntity<TodoResponseDto> addTodo(@RequestBody TodoRequestDto todoRequestDto) {
+    public ResponseEntity<TodoResponseDto> addTodo(@Valid @RequestBody TodoRequestDto todoRequestDto) {
         TodoResponseDto savedTodo = todoService.addTodo(todoRequestDto);
         return new ResponseEntity<>(savedTodo, HttpStatus.CREATED);
     }
@@ -48,7 +49,7 @@ public class TodoController {
     
     @PutMapping("{id}")
     public ResponseEntity<TodoResponseDto> updateTodo(@PathVariable("id") Long todoId,
-                                                      @RequestBody TodoRequestDto todoRequestDto) {
+                                                      @Valid @RequestBody TodoRequestDto todoRequestDto) {
         TodoResponseDto updatedTodo = todoService.updateTodo(todoId, todoRequestDto);
         return ResponseEntity.ok(updatedTodo);
     }
