@@ -17,5 +17,19 @@ services:
       retries: 10
     restart: unless-stopped
 
+  backend:
+    build: ./todo-be
+    container_name: todo-backend
+    ports:
+      - "8300:8300"
+    environment:
+      DB_URL: jdbc:postgresql://postgres-db:5432/${POSTGRES_DB:-tododb}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   postgres_data:
