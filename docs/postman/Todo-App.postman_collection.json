@@ -1,0 +1,133 @@
+{
+  "info": {
+    "_postman_id": "11892384-84c0-479e-abaf-aa5aeb4ff405",
+    "name": "Todo App",
+    "description": "This collection covers the full CRUD lifecycle for a Todo API running locally at `http://localhost:8300/api/todos`. It contains five requests:\n\n- **add todo** — `POST /api/todos`: Creates a new todo item. The request body includes a `title` (string) and a `completed` flag (boolean, defaults to `false`).\n- **list todo** — `GET /api/todos`: Retrieves all existing todo items.\n- **list by id** — `GET /api/todos/:id`: Fetches a single todo item by its ID.\n- **update todo** — `PUT /api/todos/:id`: Updates an existing todo item. The request body accepts a `title` and a `completed` flag to mark the item as done.\n- **delete todo** — `DELETE /api/todos/:id`: Permanently removes a todo item by its ID.\n\nUse this collection to develop, test, and validate the Todo API endpoints during local development.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47844729",
+    "_collection_link": "https://go.postman.co/collection/47844729-11892384-84c0-479e-abaf-aa5aeb4ff405?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "add todo",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Süt al\",\r\n  \"completed\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8300/api/todos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "api",
+            "todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list todo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8300/api/todos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "api",
+            "todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8300/api/todos/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "api",
+            "todos",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update todo",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Süt al\",\r\n  \"completed\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8300/api/todos/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "api",
+            "todos",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete todo",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8300/api/todos/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "api",
+            "todos",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
