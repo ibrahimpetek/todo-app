@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.backend.dto.TodoRequestDto;
 import com.example.backend.dto.TodoResponseDto;
 import com.example.backend.entity.Todo;
+import com.example.backend.exception.ErrorCode;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.mapper.TodoMapper;
 import com.example.backend.repository.TodoRepository;
@@ -31,7 +32,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public TodoResponseDto getTodoById(Long id) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Todo bulunamadı, id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                    ErrorCode.TODO_NOT_FOUND, 
+                    ErrorCode.TODO_NOT_FOUND.getMessage() + " (id: " + id + ")"
+                ));
         return TodoMapper.mapToResponseDto(todo);
     }
 
@@ -46,7 +50,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public TodoResponseDto updateTodo(Long id, TodoRequestDto todoRequestDto) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Todo bulunamadı, id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                    ErrorCode.TODO_NOT_FOUND, 
+                    ErrorCode.TODO_NOT_FOUND.getMessage() + " (id: " + id + ")"
+                ));
 
         todo.setTitle(todoRequestDto.getTitle());
         todo.setCompleted(todoRequestDto.isCompleted());
@@ -58,7 +65,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void deleteTodo(Long id) {
         if (!todoRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Todo bulunamadı, id: " + id);
+            throw new ResourceNotFoundException(
+                ErrorCode.TODO_NOT_FOUND, 
+                ErrorCode.TODO_NOT_FOUND.getMessage() + " (id: " + id + ")"
+            );
         }
         todoRepository.deleteById(id);
     }
